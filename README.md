@@ -2,7 +2,7 @@ import os
 
 from PIL import Image   #PIL is the python image library which needs to be preinstalled before you can run this code
 
-chr_ascii={}        #dictionary conatining characters as keys and ascii values as values
+chr_ascii={}        #dictionary containing characters as keys and ascii values as values
 ascii_chr={}        #dictionary containing ascii values as keys and characters as values
 
 for i in range(0,256):
