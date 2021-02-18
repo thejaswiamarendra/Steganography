@@ -2,7 +2,7 @@ import os
 
 from PIL import Image   #PIL is the python image library which needs to be preinstalled before you can run this code
 
-chr_ascii={}        #dictionary containing characters as keys and ascii values as values
+chr_ascii={}        #dictionary conatining characters as keys and ascii values as values
 ascii_chr={}        #dictionary containing ascii values as keys and characters as values
 
 for i in range(0,256):
@@ -36,19 +36,23 @@ text_length=len(text)
 for i in range(text_length):
     RGB=image.getpixel((x,y))
     rgb_mutable=list(RGB)
-    rgb_mutable[z]=d[text[p]]^d[password[j]]
+    rgb_mutable[z]=chr_ascii[text[p]]^chr_ascii[password[j]]
     rgb_tuple=tuple(rgb_mutable)
     image.putpixel((x,y),rgb_tuple)
-   
+    
+    
+    
+    
+    
     x=x+1
     y=y+1
     z=(z+1)%3
-    j=(j+1)%len(key)
+    j=(j+1)%len(password)
     p+=1
 
     
 image.show()
-image=image.save("encrypted.jpg")
+#image=image.save("encrypted.jpg")
 
 
 print("\n\nData hiding in image is successful\n\n")
@@ -67,16 +71,11 @@ if do_you_wanna_decrypt=="decrypt":
             RGB2=image.getpixel((x1,y1))
             coded=RGB2[z1]
         
-            message+=c[coded^d[password[j1]]]
+            message+=ascii_chr[coded^chr_ascii[password[j1]]]
             x1=x1+1
             y1=y1+1
             z1=(z1+1)%3
-            j1=(j1+1)%len(key)
-        print("\n\nEncrypted text was\n\n", message)
+            j1=(j1+1)%len(password)
+        print("\n\nEncrypted text was\n\n",message)
     else:
         print("\n\nkey doesnt match\n\n")
-        
-print("\n\n Thank you")
-            
-        
-        
